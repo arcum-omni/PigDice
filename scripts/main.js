@@ -64,7 +64,7 @@ function createNewGame() {
         //lock in player names and then change players
         document.getElementById("player1").setAttribute("disabled", "disabled");
         document.getElementById("player2").setAttribute("disabled", "disabled");
-        changePlayers();
+        document.getElementById("current").innerText = namePlayer1;
     }
 }
 /**
