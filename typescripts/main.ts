@@ -1,5 +1,4 @@
 /**
- * Page OnLoad Event
  * Assigns values to page button clicks
  */
 window.onload = function(){
@@ -9,21 +8,23 @@ window.onload = function(){
     newGameBtn.onclick = createNewGame;
 
     document.getElementById("roll").onclick = rollDie;
-
     document.getElementById("hold").onclick = holdDie;
+
+    let scoreToWin = 7; // Score required to win game
+    document.getElementById("scoreToWin").innerHTML = scoreToWin.toString();
 }
 
 /**
  * Returns a random number between min & max inclusive
- * @param minValue 
- * @param maxValue 
+ * @param minValue minimum value for a die roll
+ * @param maxValue maximum value for a die roll
  */
 function generateRandomValue(minValue:number, maxValue:number):number{
     return Math.floor(Math.random() * maxValue) + minValue;
 }
 
 /**
- * Swap players when a players turn is over
+ * Swap players when a players turn is over,
  * set currentPlayerName to the next player
  */
 function changePlayers():void{
@@ -79,7 +80,7 @@ function rollDie():void{
     let minRoll = 1;
     let maxRoll = 6;
     let currTotal = parseInt((<HTMLInputElement>document.getElementById("total")).value);
-    
+
     let die = generateRandomValue(minRoll, maxRoll);
 
     if(die == 1){
@@ -109,7 +110,6 @@ function holdDie():void{
     let currTotal = parseInt((<HTMLInputElement>document.getElementById("total")).value);
     let nameCurrentPlayer = document.getElementById("current").innerText;
     let namePlayer1 = (<HTMLInputElement>document.getElementById("player1")).value;
-    let namePlayer2 = (<HTMLInputElement>document.getElementById("player2")).value;  
 
     if(nameCurrentPlayer == namePlayer1){
         currTotal += parseInt((<HTMLInputElement>document.getElementById("score1")).value); 
@@ -128,20 +128,18 @@ function holdDie():void{
 }
 
 /**
- * Determine The Winner
+ * Determines The Winner
  */
 function whoWon():void{
-    //Get player's score
+    let scoreToWin = parseInt(document.getElementById("scoreToWin").innerText);
     let scorePlayer1 = parseInt((<HTMLInputElement>document.getElementById("score1")).value);
     let scorePlayer2 = parseInt((<HTMLInputElement>document.getElementById("score2")).value);
-
-    //Get current player's name
     let nameCurrentPlayer = document.getElementById("current").innerText;
-
-    if(scorePlayer1 >= 100){
-        alert(nameCurrentPlayer + " wins!");
-    }
-    if(scorePlayer2 >= 100){
-        alert(nameCurrentPlayer + " wins!");
+    
+    if(scorePlayer1 >= scoreToWin || scorePlayer2 >= scoreToWin){
+        document.getElementById("turn").classList.remove("open");
+        alert(nameCurrentPlayer + " is the winner!!!")
+        document.getElementById("player1").removeAttribute("disabled");
+        document.getElementById("player2").removeAttribute("disabled");
     }
 }

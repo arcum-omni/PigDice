@@ -8,7 +8,6 @@ function getYear() {
     spanMsg.innerHTML = year.toString();
 }
 /**
- * Page OnLoad Event
  * Assigns values to page button clicks
  */
 window.onload = function () {
@@ -17,17 +16,19 @@ window.onload = function () {
     newGameBtn.onclick = createNewGame;
     document.getElementById("roll").onclick = rollDie;
     document.getElementById("hold").onclick = holdDie;
+    var scoreToWin = 7; // Score required to win game
+    document.getElementById("scoreToWin").innerHTML = scoreToWin.toString();
 };
 /**
  * Returns a random number between min & max inclusive
- * @param minValue
- * @param maxValue
+ * @param minValue minimum value for a die roll
+ * @param maxValue maximum value for a die roll
  */
 function generateRandomValue(minValue, maxValue) {
     return Math.floor(Math.random() * maxValue) + minValue;
 }
 /**
- * Swap players when a players turn is over
+ * Swap players when a players turn is over,
  * set currentPlayerName to the next player
  */
 function changePlayers() {
@@ -103,7 +104,6 @@ function holdDie() {
     var currTotal = parseInt(document.getElementById("total").value);
     var nameCurrentPlayer = document.getElementById("current").innerText;
     var namePlayer1 = document.getElementById("player1").value;
-    var namePlayer2 = document.getElementById("player2").value;
     if (nameCurrentPlayer == namePlayer1) {
         currTotal += parseInt(document.getElementById("score1").value);
         document.getElementById("score1").value = currTotal.toString();
@@ -118,18 +118,17 @@ function holdDie() {
     changePlayers();
 }
 /**
- * Determine The Winner
+ * Determines The Winner
  */
 function whoWon() {
-    //Get player's score
+    var scoreToWin = parseInt(document.getElementById("scoreToWin").innerText);
     var scorePlayer1 = parseInt(document.getElementById("score1").value);
     var scorePlayer2 = parseInt(document.getElementById("score2").value);
-    //Get current player's name
     var nameCurrentPlayer = document.getElementById("current").innerText;
-    if (scorePlayer1 >= 100) {
-        alert(nameCurrentPlayer + " wins!");
-    }
-    if (scorePlayer2 >= 100) {
-        alert(nameCurrentPlayer + " wins!");
+    if (scorePlayer1 >= scoreToWin || scorePlayer2 >= scoreToWin) {
+        document.getElementById("turn").classList.remove("open");
+        alert(nameCurrentPlayer + " is the winner!!!");
+        document.getElementById("player1").removeAttribute("disabled");
+        document.getElementById("player2").removeAttribute("disabled");
     }
 }
