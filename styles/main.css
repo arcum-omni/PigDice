@@ -1,7 +1,7 @@
 body{
     font-family: Arial, Helvetica, sans-serif;
     margin: auto;
-    background-image: linear-gradient(to right,rgb(107, 155, 228), rgb(140, 236, 153));
+    background-image: linear-gradient(to right, rgb(250,100,125), white);
 }
 
 main{
@@ -10,6 +10,8 @@ main{
     border: 3px solid black;
     margin-top: 2em;
     padding: 0 2em 1em;
+    background: pink;
+    border-radius: 2.5em;
 }
 
 h2 {
@@ -31,6 +33,7 @@ input {
 
 fieldset {
     margin-bottom: 1em;
+    border-radius: 1em;
 }
 
 #turn {
@@ -53,6 +56,7 @@ fieldset {
 #new_game {
     width: 6em;
     margin-left: 1em;
+    border-radius: .5em;
 }
 
 #hold {
