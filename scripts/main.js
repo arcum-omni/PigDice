@@ -16,7 +16,7 @@ window.onload = function () {
     newGameBtn.onclick = createNewGame;
     document.getElementById("roll").onclick = rollDie;
     document.getElementById("hold").onclick = holdDie;
-    var scoreToWin = 7; // Score required to win game
+    var scoreToWin = 100; // Score required to win game
     document.getElementById("scoreToWin").innerHTML = scoreToWin.toString();
 };
 /**

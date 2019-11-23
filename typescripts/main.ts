@@ -10,7 +10,7 @@ window.onload = function(){
     document.getElementById("roll").onclick = rollDie;
     document.getElementById("hold").onclick = holdDie;
 
-    let scoreToWin = 7; // Score required to win game
+    let scoreToWin = 100; // Score required to win game
     document.getElementById("scoreToWin").innerHTML = scoreToWin.toString();
 }
 
